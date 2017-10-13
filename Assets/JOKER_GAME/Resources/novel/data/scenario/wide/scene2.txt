@@ -1,0 +1,32 @@
+@call file=wide/libs/utils
+[bg_new name="background" storage="shibuya"]
+[bg_show name="background"]
+
+;メッセージ表示
+[showmessage]
+[call file=wide/system target="*system_setting_buttons"]
+[text_new name=_sp_chara_name layer=ui x="-168" y=-108.5 val="" color="DDFF00" fontsize=16 anchor="MiddleLeft"]
+[text_show name="_sp_chara_name"] 
+
+
+;---------------キャラ定義
+[chara_new name=hiyoko storage=Hiyoko scale="10" y=3  ]
+
+[show name=hiyoko]
+
+
+[playbgm wait=false time=1 storage="music"]
+
+#俺
+あ、ひよこ！[p]
+
+って言うかオレ？[p]
+のような気もするけど...[p]
+
+
+[scene file="Scenes/Play" ]
+
+[s]
+
+
+
