@@ -60,6 +60,12 @@ public class BattleSystem : MonoBehaviour {
 		
 	}
 
+    IEnumerator showPlayerTurn()
+    {
+        yield return new WaitForSeconds(2.5f);
+        sentenceObject.GetComponent<Text>().text = playerName + "のターン";
+    }
+
     public void toolPotionPushed()
     {
         if (waitingInput == false)
@@ -83,6 +89,8 @@ public class BattleSystem : MonoBehaviour {
         }
 
         toolPanelObject.SetActive(false);
+
+        StartCoroutine("showPlayerTurn");
     }
     public void toolCarrotPushed()
     {
@@ -105,8 +113,9 @@ public class BattleSystem : MonoBehaviour {
             toolCarrotNumObject.GetComponent<Text>().text = ToolCarrotNum.ToString();
 
         }
-
         toolPanelObject.SetActive(false);
+
+        StartCoroutine("showPlayerTurn");
     }
 
     public void spellRecoverPushed()
@@ -168,17 +177,21 @@ public class BattleSystem : MonoBehaviour {
 
     IEnumerator playerLose()
     {
-        yield return new WaitForSeconds(2.5f);
+        Debug.Log("playerLose called");
+
         sentenceObject.GetComponent<Text>().text = playerName + "のまけ";
+
         yield return new WaitForSeconds(2.5f);
+
         SceneManager.LoadScene(escapeScene);
     }
 
     void enemyAttack()
     {
         playerHP -= enemyAttackPower;
-        if (playerHP < 0)
+        if (playerHP <= 0)
         {
+            Debug.Log("calling playerLose");
             StartCoroutine("playerLose");
         }
         else
@@ -276,10 +289,12 @@ void enemySpell()
                 enemySpell();
                 break;
         }
+        if ( playerHP > 0)
+        {
+            yield return new WaitForSeconds(2.5f);
+            sentenceObject.GetComponent<Text>().text = playerName + "のターン";
 
-        yield return new WaitForSeconds(2.5f);
-        sentenceObject.GetComponent<Text>().text = playerName + "のターン";
-
+        }
     }
 
     IEnumerator attackCheck()

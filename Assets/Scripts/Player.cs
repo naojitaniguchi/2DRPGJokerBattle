@@ -173,6 +173,10 @@ public class Player : MonoBehaviour {
 		{
 			collider.gameObject.GetComponent<SceneChangeToJocker>().ChangeToJocker();
 		}
+        if (collider.gameObject.tag == "SceneChangeBattle")
+        {
+            collider.gameObject.GetComponent<NextScene>().changeScene();
+        }
 
     }
 

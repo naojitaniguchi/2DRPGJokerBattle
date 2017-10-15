@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ItemTrigger
+  - EncountTrigger
+  - SceneChangeJocker
+  - Girl03
+  - ExitTrigger
+  - Girl02
+  - SceneChangeBattle
   layers:
   - Default
   - TransparentFX
